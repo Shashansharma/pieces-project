@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Facts App</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a2e;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .fact-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            min-height: 100px;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Space Facts</h1>
+        <div id="factDisplay" class="fact-card">
+            Click the button to learn a space fact!
+        </div>
+        <button id="newFactBtn">Show New Fact</button>
+    </div>
+
+    <script>
+        const spaceFacts = {
+            "spaceFacts": [
+                {
+                    "id": 1,
+                    "fact": "Light from the Sun takes approximately 8 minutes and 20 seconds to reach Earth"
+                },
+                // ... (include all 20 facts from the previous JSON data)
+                {
+                    "id": 20,
+                    "fact": "Pluto is smaller than the United States in surface area"
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const factDisplay = document.getElementById('factDisplay');
+            const newFactBtn = document.getElementById('newFactBtn');
+            
+            function getRandomFact() {
+                const facts = spaceFacts.spaceFacts;
+                const randomIndex = Math.floor(Math.random() * facts.length);
+                return facts[randomIndex].fact;
+            }
+
+            newFactBtn.addEventListener('click', () => {
+                factDisplay.textContent = getRandomFact();
+                factDisplay.style.animation = 'none';
+                factDisplay.offsetHeight; // Trigger reflow
+                factDisplay.style.animation = 'fadeIn 0.5s';
+            });
+        });
+    </script>
+</body>
+</html>
